@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning Assistant - Learn Languages Easily</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌍 Language Learning Assistant</h1>
+        <p class="subtitle">Translate, learn, and master new languages</p>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('translate')">🔄 Translate</button>
+        <button class="tab-btn" onclick="showTab('dictionary')">📖 Dictionary</button>
+        <button class="tab-btn" onclick="showTab('saved')">⭐ Saved</button>
+    </div>
+
+    <!-- Translation Tab -->
+    <div id="translateTab" class="tab-content active">
+        <div class="translation-section">
+            <div class="language-selector">
+                <div class="language-box">
+                    <label for="fromLang">From:</label>
+                    <select id="fromLang" onchange="updateLanguageNames()">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="ru">Russian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ko">Korean</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ar">Arabic</option>
+                        <option value="hi">Hindi</option>
+                        <option value="nl">Dutch</option>
+                        <option value="pl">Polish</option>
+                        <option value="tr">Turkish</option>
+                    </select>
+                </div>
+
+                <button class="swap-btn" onclick="swapLanguages()" title="Swap languages">⇄</button>
+
+                <div class="language-box">
+                    <label for="toLang">To:</label>
+                    <select id="toLang" onchange="updateLanguageNames()">
+                        <option value="es">Spanish</option>
+                        <option value="en">English</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="ru">Russian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ko">Korean</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ar">Arabic</option>
+                        <option value="hi">Hindi</option>
+                        <option value="nl">Dutch</option>
+                        <option value="pl">Polish</option>
+                        <option value="tr">Turkish</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-areas">
+                <div class="text-box">
+                    <textarea id="inputText" placeholder="Enter text to translate..." rows="6"></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> / 500 characters
+                    </div>
+                </div>
+
+                <div class="text-box result-box">
+                    <div id="outputText" class="output-area">Translation will appear here...</div>
+                    <button id="saveBtn" class="save-btn hidden" onclick="saveTranslation()">⭐ Save</button>
+                    <button id="copyBtn" class="copy-btn hidden" onclick="copyTranslation()">📋 Copy</button>
+                </div>
+            </div>
+
+            <button class="translate-btn" onclick="translateText()">Translate</button>
+
+            <!-- Alternative translations -->
+            <div id="alternatives" class="alternatives hidden">
+                <h3>Alternative Translations:</h3>
+                <div id="altList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dictionary Tab -->
+    <div id="dictionaryTab" class="tab-content">
+        <div class="dictionary-section">
+            <div class="search-box">
+                <input type="text" id="wordInput" placeholder="Enter an English word to get definition..." />
+                <button onclick="searchDefinition()">Search</button>
+            </div>
+
+            <div id="definitionResult" class="definition-result"></div>
+        </div>
+    </div>
+
+    <!-- Saved Tab -->
+    <div id="savedTab" class="tab-content">
+        <div class="saved-section">
+            <div class="saved-header">
+                <h2>Your Saved Translations</h2>
+                <button onclick="clearSaved()" class="clear-btn">Clear All</button>
+            </div>
+            <div id="savedList" class="saved-list"></div>
+            <div id="emptySaved" class="empty-state">
+                <p>No saved translations yet. Start translating and save your favorites!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading spinner -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Error message -->
+    <div id="error" class="error hidden"></div>
+
+    <footer>
+        <p>Powered by <a href="https://mymemory.translated.net/" target="_blank">MyMemory Translation API</a>
+            and <a href="https://dictionaryapi.dev/" target="_blank">Free Dictionary API</a></p>
+    </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
